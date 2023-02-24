@@ -11,5 +11,7 @@ def set_apache():
     content = read_file("/etc/apache2/apache2.conf")
     content += "\nServerName "+ controller_cfg_info["name"]
     rewrite_file("/etc/apache2/apache2.conf", content)
-
     os.system("service apache2 restart")
+    
+if __name__ == "__main__":
+    set_apache()
