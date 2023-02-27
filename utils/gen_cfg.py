@@ -13,10 +13,10 @@ def gen_cfg_info():
     controller_info["mysql_password"] = "1234"
     controller_info["rabbitmq_user"] = "openstack"
     controller_info["rabbitmq_password"] = "1234"
-    computer_info = {}
+    # computer_info = {}
     
     info["controller_info"] = controller_info
-    info["computer_info"] = computer_info
+    # info["computer_info"] = computer_info
     
     return info
 

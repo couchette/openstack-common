@@ -1,7 +1,7 @@
 import os
 import sys
 from pathlib import Path
-sys.path.append(Path(__file__).parent.parent.parent.parent)
+sys.path.append(str(Path(__file__).parent.parent.parent.parent))
 from utils.gen_cfg import gen_cfg_info
 from utils.file_modify import read_file, rewrite_file
 
@@ -31,3 +31,7 @@ def setup_etcd():
     rewrite_file("/etc/default/etcd", content)
     os.system("systemctl restart etcd")
     os.system("systemctl enable etcd")
+    
+
+if __name__ == "__main__":
+    setup_etcd()

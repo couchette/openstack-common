@@ -1,7 +1,7 @@
 import os
 import sys
 from pathlib import Path
-sys.path.append(Path(__file__).parent.parent.parent.parent)
+sys.path.append(str(Path(__file__).parent.parent.parent.parent))
 from utils.gen_cfg import gen_cfg_info
 from utils.file_modify import rewrite_file
 
@@ -26,3 +26,7 @@ def setup_mysql():
     mysql_password = controller_cfg_info["mysql_password"]
     cmd_ = "\nY\n{}\n{}\nY\nY\nY\nY\n".format(mysql_password, mysql_password)
     os.system("mysql_secure_installation << EOF\n" + cmd_+ "\nEOF")
+    
+    
+if __name__ == "__main__":
+    setup_mysql()
