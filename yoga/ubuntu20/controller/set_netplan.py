@@ -32,7 +32,7 @@ def set_netplan():
             controller_cfg_info["ip2"],
             controller_cfg_info["gateway2"],
             controller_cfg_info["gateway2"],)
-  rewrite_file("/etc/hosts", content)
+  rewrite_file("/etc/netplan/01-network-manager-all.yaml", content)
   os.system("netplan apply")
   
 
