@@ -18,7 +18,7 @@ def set_netplan():
         addresses: [{}/24]   #设置本机IP及掩码
         gateway4: {}   #设置网关
         nameservers:
-            addresses: {} 
+            addresses: [{}] 
       ens34:   #配置的网卡名称，自己根据情况修改
         dhcp4: no    #dhcp4关闭
         dhcp6: no    #dhcp6关闭

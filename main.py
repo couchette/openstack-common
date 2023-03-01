@@ -21,8 +21,16 @@ def install_dev():
         pkg_path = pkgsdir + pkg_name
         if os.path.isfile(pkg_path):
             os.system("apt-get install python3-pip")
+            running_inquiries()
             os.system("python3 -m pip install " + pkg_path + " -i https://pypi.mirrors.ustc.edu.cn/simple/")
             logger.info("install {}".format(pkg_path))
+
+def running_inquiries():
+    content = input("continue?(Y/n)")
+    if content == 'Y':
+        pass
+    else:
+        exit()
             
 def run_script(openstack_version:str, sys="ubuntu20", node="controller"):
     workdir = os.getcwd()
@@ -30,35 +38,49 @@ def run_script(openstack_version:str, sys="ubuntu20", node="controller"):
     
     # sudo
     os.system("python3 " + scriptsdir + "set_hostsname.py")
+    running_inquiries()
     logger.info("set_hostsname")
     os.system("python3 " + scriptsdir + "set_netplan.py")
+    running_inquiries()
     logger.info("set_netplan")
     os.system("python3 " + scriptsdir + "set_npt.py")
+    running_inquiries()
     logger.info("set_npt")
     os.system("python3 " + scriptsdir + "setup_openstack.py")
+    running_inquiries()
     logger.info("setup_openstack")
     os.system("python3 " + scriptsdir + "setup_mysql.py")
+    running_inquiries()
     logger.info("setup_mysql")
-    os.system("python3 " + scriptsdir + "set_rabbitmq.py")
-    logger.info("set_rabbitmq")
+    os.system("python3 " + scriptsdir + "setup_rabbitmq.py")
+    running_inquiries()
+    logger.info("setup_rabbitmq")
     os.system("python3 " + scriptsdir + "setup_memcache.py")
+    running_inquiries()
     logger.info("setup_memcache")
     os.system("python3 " + scriptsdir + "setup_etcd.py")
+    running_inquiries()
     logger.info("setup_etcd")
     os.system("python3 " + scriptsdir + "setup_keystone.py")
+    running_inquiries()
     logger.info("setup_keystone")
     os.system("python3 " + scriptsdir + "set_keystone.py")
+    running_inquiries()
     logger.info("set_keystone")
     os.system("python3 " + scriptsdir + "set_apache.py")
+    running_inquiries()
     logger.info("set_apache")
     os.system("python3 " + scriptsdir + "final_set.py")
+    running_inquiries()
     logger.info("final_set")
     
     pass
     
 def main_func():
     init_check()
+    running_inquiries()
     install_dev()
+    running_inquiries()
     run_script("yoga")
     
 if __name__ == "__main__":
