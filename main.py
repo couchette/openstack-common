@@ -3,8 +3,8 @@ import sys
 import logging
 
 FORMAT = '%(asctime)s %(clientip)-15s %(user)-8s %(message)s'
-logging.basicConfig(format=FORMAT)
-logger = logging.getLogger('tcpserver')
+logger = logging.getLogger()
+logger.setLevel(logging.INFO)
 
 
 def init_check():
@@ -20,6 +20,7 @@ def install_dev():
     for pkg_name in pkgs_names:
         pkg_path = pkgsdir + pkg_name
         if os.path.isfile(pkg_path):
+            os.system("apt-get install net-tools")
             os.system("apt-get install python3-pip")
             running_inquiries()
             os.system("python3 -m pip install " + pkg_path + " -i https://pypi.mirrors.ustc.edu.cn/simple/")
@@ -38,41 +39,53 @@ def run_script(openstack_version:str, sys="ubuntu20", node="controller"):
     
     # sudo
     os.system("python3 " + scriptsdir + "set_hostsname.py")
-    running_inquiries()
     logger.info("set_hostsname")
+    running_inquiries()
+    
     os.system("python3 " + scriptsdir + "set_netplan.py")
-    running_inquiries()
     logger.info("set_netplan")
+    running_inquiries()
+    
     os.system("python3 " + scriptsdir + "set_npt.py")
+    logger.info("set_npt")   
     running_inquiries()
-    logger.info("set_npt")
+    
     os.system("python3 " + scriptsdir + "setup_openstack.py")
-    running_inquiries()
     logger.info("setup_openstack")
+    running_inquiries()
+    
     os.system("python3 " + scriptsdir + "setup_mysql.py")
-    running_inquiries()
     logger.info("setup_mysql")
+    running_inquiries()
+    
     os.system("python3 " + scriptsdir + "setup_rabbitmq.py")
-    running_inquiries()
     logger.info("setup_rabbitmq")
+    running_inquiries()
+    
     os.system("python3 " + scriptsdir + "setup_memcache.py")
-    running_inquiries()
     logger.info("setup_memcache")
+    running_inquiries()
+    
     os.system("python3 " + scriptsdir + "setup_etcd.py")
-    running_inquiries()
     logger.info("setup_etcd")
+    running_inquiries()
+    
     os.system("python3 " + scriptsdir + "setup_keystone.py")
-    running_inquiries()
     logger.info("setup_keystone")
+    running_inquiries()
+    
     os.system("python3 " + scriptsdir + "set_keystone.py")
-    running_inquiries()
     logger.info("set_keystone")
+    running_inquiries()
+    
     os.system("python3 " + scriptsdir + "set_apache.py")
-    running_inquiries()
     logger.info("set_apache")
-    os.system("python3 " + scriptsdir + "final_set.py")
     running_inquiries()
-    logger.info("final_set")
+    
+    logger.info("set_final")
+    os.system("python3 " + scriptsdir + "set_final.py")
+    logger.info("set_final")
+    running_inquiries()
     
     pass
     

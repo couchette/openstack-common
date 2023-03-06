@@ -12,11 +12,11 @@ def set_keystone():
         "# IDs. (string value)\n#provider = fernet",
         "# IDs. (string value)\nprovider = fernet")
         
-    os.system('su -s /bin/sh -c "keystone-manage db_sync" keystone')
-    os.system("keystone-manage fernet_setup --keystone-user keystone --keystone-group keystone")
-    os.system("keystone-manage credential_setup --keystone-user keystone --keystone-group keystone")
+    os.system('sudo /bin/sh -c "keystone-manage db_sync" keystone')
+    os.system("sudo keystone-manage fernet_setup --keystone-user keystone --keystone-group keystone")
+    os.system("sudo keystone-manage credential_setup --keystone-user keystone --keystone-group keystone")
         
-    os.system("keystone-manage bootstrap --bootstrap-password admin  \
+    os.system("sudo keystone-manage bootstrap --bootstrap-password admin  \
         --bootstrap-admin-url http://controller:5000/v3/ \
         --bootstrap-internal-url http://controller:5000/v3/ \
         --bootstrap-public-url http://controller:5000/v3/ \

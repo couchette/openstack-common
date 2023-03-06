@@ -16,14 +16,20 @@ def set_netplan():
         dhcp4: no    #dhcp4关闭
         dhcp6: no    #dhcp6关闭
         addresses: [{}/24]   #设置本机IP及掩码
-        gateway4: {}   #设置网关
+        routes:
+          - to: 0.0.0.0/0
+            via: {}   #设置网关
+            metric: 0
         nameservers:
             addresses: [{}] 
       ens34:   #配置的网卡名称，自己根据情况修改
         dhcp4: no    #dhcp4关闭
         dhcp6: no    #dhcp6关闭
         addresses: [{}/24]   #设置本机IP及掩码
-        gateway4: {}   #设置网关
+        routes:
+          - to: 0.0.0.0/0
+            via: {}   #设置网关
+            metric: 100
         nameservers:
             addresses: [{}] 
   '''.format(controller_cfg_info["ip1"],
